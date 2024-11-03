@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="score" id="score"><p>score =</p></div>
+    <div class="jalan">
+      <img src="asset/road.png" alt="" />
+      <img src="asset/road.png" alt="" />
+    </div>
+    <div class="car-npc">
+      <img src="asset/car-npc.png" alt="" class="npc1" id="npc1" />
+      <img src="asset/car-npc2.png" alt="" class="npc2" id="npc" />
+    </div>
+    <div class="car" id="car">
+      <img src="asset/car.png" alt="" />
+    </div>
+
+    <script>
+      const car = document.getElementById("car");
+      const npc = document.getElementById("npc1");
+
+      positionX = 70;
+      positionY = 60;
+
+      document.addEventListener("keydown", (event) => {
+        const box = document.getElementById("car");
+        const step = 100;
+        const stepY = 30;
+
+        switch (event.key) {
+          case "ArrowLeft":
+            positionX -= step;
+            break;
+          case "ArrowRight":
+            positionX += step;
+            break;
+          case "ArrowUp":
+            positionY += stepY;
+            break;
+          default:
+            return;
+        }
+
+        box.style.transform = `translate(${positionX}px)`;
+      });
+
+      let score = 0;
+      const scoreElement = document.getElementById("score");
+
+      // Fungsi untuk memperbarui skor
+      function updateScore() {
+        score++; // Tambahkan skor
+        scoreElement.textContent = `Score: ${score}`;
+      }
+
+      setInterval(updateScore, 100);
+
+      const hitcar = setInterval(function () {
+        const Cartop = parseInt(
+          window.getComputedStyle(car).getPropertyValue("transform")
+        );
+        const npc = parseInt(
+          window.getComputedStyle(npc).getPropertyValue("transform")
+        );
+        if (npc < 0 && npc > 0 && car <= 0) {
+          npc.style.animation = "none";
+          if (confirm("ulang?")) {
+            window.location.reload();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

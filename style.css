@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.score {
+  z-index: 1001;
+}
+.jalan {
+  display: grid;
+  animation: jalan 1s infinite linear;
+  position: absolute;
+  bottom: 0;
+}
+@keyframes jalan {
+  0% {
+    bottom: 0;
+  }
+  100% {
+    bottom: -800px;
+  }
+}
+.jalan img {
+  height: 1000px;
+  width: 300px;
+}
+.car-npc {
+  display: grid;
+  gap: 700px;
+  animation: npc 5s infinite linear;
+  transform: translateY(-1100px);
+}
+@keyframes npc {
+  0% {
+    transform: translateY(-1100px);
+  }
+  100% {
+    transform: translateY(1100px);
+  }
+}
+.car-npc img {
+  width: 180px;
+}
+#npc1 {
+  transform: translateX(-50px);
+}
+.npc2 {
+  transform: translateX(70px);
+}
+#car {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(70px);
+  transition: 0.3s;
+}
+#car img {
+  width: 150px;
+}
